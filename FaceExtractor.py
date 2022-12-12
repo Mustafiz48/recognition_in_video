@@ -1,5 +1,3 @@
-import csv
-import os
 import cv2
 import numpy as np
 
@@ -10,9 +8,6 @@ class FaceExtractor:
         self.configFile = r"Models/deploy.prototxt.txt"
         self.net = cv2.dnn.readNetFromCaffe(self.configFile, self.modelFile)
         self.trainimage_path = "TrainingImage/"
-        self.trainimagelabel_path = "TrainingImageLabel/Trainner.yml"
-        self.student_detail_path = "StudentDetails/studentdetails.csv"
-        self.attendance_sheet = "Attendance/Attendance_sheet.csv"
         self.video_path = "crush.mp4"
 
     # take Image of user
@@ -44,7 +39,8 @@ class FaceExtractor:
                             try:
                                 cv2.rectangle(img, (x, y), (x1, y1), (0, 0, 255), 2)
                                 cv2.imwrite(f"{path}" + str(sample_num) + ".jpg", gray[y:y1, x: x1], )
-                            except:
+                            except Exception as e:
+                                print(e)
                                 continue
 
             cam.release()

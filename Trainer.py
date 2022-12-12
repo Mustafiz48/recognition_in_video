@@ -1,11 +1,7 @@
-import csv
 import os
 import cv2
 import numpy as np
-import pandas as pd
-import datetime
-import time
-from PIL import ImageTk, Image
+from PIL import Image
 
 
 class Trainer:

@@ -1,13 +1,9 @@
+import os.path
 import warnings
-import csv
-
-from tkinter import *
-from tkinter import messagebox
 import numpy as np
 import cv2
 import pandas as pd
-import datetime
-import time
+
 
 import moviepy.editor as mpy
 
@@ -21,19 +17,23 @@ class Recognizer:
         self.configFile = r"Models/deploy.prototxt.txt"
         self.net = cv2.dnn.readNetFromCaffe(self.configFile, self.modelFile)
         self.trainimagelabel_path = "TrainingImageLabel/Trainer.yml"
-        self.mapping_path = ("Id_Name_Mapping/id_mapping.csv")
+        self.mapping_path = "Id_Name_Mapping/id_mapping.csv"
         self.appearance_path = "Appearance/Appearance_sheet.csv"
         self.video_path = "crush.mp4"
         self.name = None
         self.id_ = None
 
     def recognize(self):
+        if not os.path.isfile(self.appearance_path):
+            with open(self.appearance_path, 'a') as f:
+                f.write("Name,TimeStamp\n")
         print("Starting recording timestamp...")
         try:
             recognizer = cv2.face.LBPHFaceRecognizer_create()
             try:
                 recognizer.read(self.trainimagelabel_path)
-            except:
+            except Exception as e:
+                print(e)
                 e = "Model not found,please train model"
                 print(e)
             df = pd.read_csv(self.mapping_path)
@@ -69,8 +69,8 @@ class Recognizer:
 
                                 try:
                                     with open(self.appearance_path, 'a') as f:
-                                        writer = csv.writer(f)
-                                        writer.writerow([self.name, tstamp])
+                                        f.write(f"{self.name},{tstamp}\n")
+
                                 except Exception as e:
                                     print("Error in reading csv file. Exception: ", e)
                             else:

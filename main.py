@@ -8,8 +8,8 @@ win.title('Recognizer')
 win.geometry("700x350")
 
 radio = IntVar()
-Label(text="Candidate recognition system from movie!\n\n", font=('Aerial 14')).pack()
-Label(text="Select one of the following action you want to perform:", font=('Aerial 11')).pack()
+Label(text="Candidate recognition system from movie!\n\n", font='Aerial 14').pack()
+Label(text="Select one of the following action you want to perform:", font='Aerial 11').pack()
 label = Label(win)
 label.pack()
 

@@ -9,7 +9,7 @@ N.B. It is recommended to start with a new virtual environment
 ### Clone the project
 
 ```bash
-  git clone <repo-link>
+  git clone https://github.com/Mustafiz48/recognition_in_video.git
 ```
 or you can also download the project with the gitHub repo link
 
@@ -60,7 +60,7 @@ After the program is finished, if you open the Appearance_sheet.csv file, you wi
 
 
 ## Extras
-### Convert result format from second to h:m:s 
+### Convert result format from second to h: m: s 
 
 ```
   python seconds_to_minutes.py

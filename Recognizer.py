@@ -73,7 +73,18 @@ class Recognizer:
 
                                 except Exception as e:
                                     print("Error in reading csv file. Exception: ", e)
+
+                                cv2.rectangle(im, (x, y), (x1, y1), (0, 260, 0), 4)
+                                cv2.putText(im, str(self.name), (x1, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 0,), 4)
                             else:
                                 continue
+                    try:
+                        cv2.imshow("Recognition Going on...", cv2.cvtColor(im, cv2.COLOR_BGR2RGB))
+                        key = cv2.waitKey(30) & 0xFF
+                        if key == 27:
+                            cv2.destroyAllWindows()
+                    except Exception as e:
+                        print(e)
+                        continue
         except Exception as e:
             print(e)
